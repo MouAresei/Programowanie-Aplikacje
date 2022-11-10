@@ -33,7 +33,7 @@ namespace PolymorphismApp
             type = animalToCopy.type;
         }
 
-        public void ShowInfo()
+        public virtual void ShowInfo()
         {
             Console.WriteLine("***********************");
             Console.WriteLine(type + " o imieniu " + name + " ma " + age + " lat");

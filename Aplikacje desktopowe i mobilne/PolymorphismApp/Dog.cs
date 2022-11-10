@@ -33,5 +33,14 @@ namespace PolymorphismApp
         {
             Console.WriteLine("Pies o imieniu " + name + " goni listonosza");
         }
+
+        public new void ShowInfo()
+        {
+            Console.WriteLine("------------------------");
+            Console.WriteLine("++++++++++++++++++++++++");
+            Console.WriteLine(type + " o imieniu " + name + " ma " + age + " lat");
+            Console.WriteLine("------------------------");
+        }
     }
 }
+
