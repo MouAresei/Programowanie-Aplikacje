@@ -9,6 +9,12 @@ namespace Gra
             Board board = new Board();
             board.Draw();
 
+            Player player = new Player();
+            while(true)
+              player.Move();
+
+
+
         }
     }
 }
