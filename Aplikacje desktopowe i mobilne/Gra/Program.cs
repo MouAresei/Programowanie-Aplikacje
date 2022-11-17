@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace Gra
 {
@@ -10,9 +11,19 @@ namespace Gra
             board.Draw();
 
             Player player = new Player();
-            while(true)
-              player.Move();
 
+            char direction = 's';
+
+            while (true)
+            {
+                player.Move();
+                if(board.CollisionDetect(player.CurrX, player.CurrY))
+                {
+                    break;
+                }
+
+                Thread.Sleep(500);
+            }
 
 
         }

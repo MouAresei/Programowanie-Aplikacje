@@ -36,7 +36,7 @@ namespace Gra
                 Console.SetCursorPosition(0, i);
                 Console.Write(borderChar);
 
-                Console.SetCursorPosition(height-1, i);
+                Console.SetCursorPosition(width -1, i);
                 Console.Write(borderChar);
 
             }
@@ -47,6 +47,20 @@ namespace Gra
                 Console.Write(borderChar);
             }
             Console.ResetColor();
+        }
+
+        public bool CollisionDetect(int x, int y)
+        {
+            if (y == 0) //górna sciana
+                return true;
+            if (x == 0) //lewa sciana
+                return true;
+            if (y == height - 1) //dolna sciana
+                return true;
+            if (x == width - 1) //prawa sciana
+                return true;
+            
+            return false;
         }
     }
 }

@@ -12,41 +12,53 @@ namespace Gra
         private ConsoleColor foregroundColor = ConsoleColor.DarkYellow;
         private char playerChar = 'O';
 
-        private const char moveUp = 'w';
-        private const char moveDown = 's';
-        private const char moveRight = 'd';
-        private const char moveLeft = 'a';
-
         private int currX = 1;
         private int currY = 1;
-        
+
         private int prevX = 1;
         private int prevY = 1;
+
+        public int CurrX
+        {
+
+            get
+            {
+                return currX;
+            }
+        }
+
+        public int CurrY
+        {
+            get
+            {
+                return currY;
+            }
+        }
 
         public Player()
         {
             Draw();
         }
-        
 
-        public void Move()
+
+        public void Move(char direction)
         {
-            var pressKey = Console.ReadKey(true).KeyChar;
+           // var pressKey = Console.ReadKey(true).KeyChar;
 
-            switch(pressKey)
+            switch (pressKey)
             {
                 case moveUp:
                     currY--;
                     break;
-                
+
                 case moveDown:
                     currY++;
                     break;
-               
+
                 case moveRight:
                     currX++;
                     break;
-               
+
                 case moveLeft:
                     currX--;
                     break;
@@ -55,7 +67,7 @@ namespace Gra
             }
             Draw();
         }
-        
+
 
         private void Draw()
         {
@@ -70,8 +82,8 @@ namespace Gra
 
             prevX = currX;
             prevY = currY;
-        }
-        
 
+            Console.ResetColor();
+        }
     }
 }
