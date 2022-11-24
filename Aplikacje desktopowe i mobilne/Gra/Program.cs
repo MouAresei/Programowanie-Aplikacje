@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gra.Enums;
+using System;
 using System.Threading;
 
 namespace Gra

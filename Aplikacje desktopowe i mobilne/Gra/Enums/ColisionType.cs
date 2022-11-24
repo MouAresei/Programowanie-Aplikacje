@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gra
+namespace Gra.Enums
 {
-    enum MoveDirection
+    enum ColisionType
     {
-        MOVE_UP = 'w',
-        MOVE_DOWN = 's',
-        MOVE_RIGHT = 'd',
-        MOVE_LEFT = 'a',
+        NoCollision,
+        BorderCollision
+
     }
 }

@@ -56,9 +56,23 @@ namespace Gra
             Console.ResetColor();
         }
 
-        public bool CollisionDetect(int x, int y)
+        public CollisionType CollisionDetect(int x, int y)
         {
-            if (y == leftCorner) //górna sciana
+           /* for (int i = 0; i < availbleFieldsOnBoard.Count; i++)
+            {
+                if (availbleFieldsOnBoard[i].X == x && availbleFieldsOnBoard[i].Y == y)
+                    return false;
+            }*/
+
+            foreach(AvaibleFields field in availbleFieldsOnBoard)
+            {
+                if (field.X == x && field.Y == y)
+                    return ColisionDetect.NoCollision;
+            }
+
+            return true;
+
+            /*if (y == leftCorner) //górna sciana
                 return true;
             if (x == topCorner) //lewa sciana
                 return true;
@@ -67,7 +81,7 @@ namespace Gra
             if (x == width - 1 + topCorner) //prawa sciana
                 return true;
             
-            return false;
+            return false;*/
         }
 
         private void CompleteAvaibleFields()
@@ -91,7 +105,7 @@ namespace Gra
 
             int randomNumber = random.Next(0, availbleFieldsOnBoard.Count);
 
-            AvaibleFields avaibleFields = availbleFieldsOnBoard[randomNumber];
+            AvaibleFields avaibleFields =  availbleFieldsOnBoard[randomNumber];
 
             return avaibleFields;
         }
