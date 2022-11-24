@@ -10,19 +10,26 @@ namespace Gra
             Board board = new Board();
             board.Draw();
 
-            Player player = new Player();
+            AvaibleFields avaibleFields = board.GetRandomAvaibleField();
 
-            char direction = 's';
+            Player player = new Player(avaibleFields.X, avaibleFields.Y);
+
+            MoveDirection direction = MoveDirection.MOVE_RIGHT;
 
             while (true)
             {
-                player.Move();
+                if(Console.KeyAvailable)
+                {
+                    direction = (MoveDirection)Console.ReadKey(true).KeyChar;
+                }
+
+                player.Move(direction);
                 if(board.CollisionDetect(player.CurrX, player.CurrY))
                 {
                     break;
                 }
 
-                Thread.Sleep(500);
+                Thread.Sleep(300);
             }
 
 

@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace Gra
 {
-    enum MoveDirection
+    class AvaibleFields
     {
-        MOVE_UP = 'w',
-        MOVE_DOWN = 's',
-        MOVE_RIGHT = 'd',
-        MOVE_LEFT = 'a',
+        public int X { get; set; }
+        public int Y { get; set; }
     }
 }

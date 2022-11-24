@@ -35,31 +35,33 @@ namespace Gra
             }
         }
 
-        public Player()
+        public Player(int startX, int startY)
         {
+            currX = prevX = startX;
+            currY = prevY = startY;
             Draw();
         }
 
 
-        public void Move(char direction)
+        public void Move(MoveDirection direction)
         {
            // var pressKey = Console.ReadKey(true).KeyChar;
 
-            switch (pressKey)
+            switch (direction)
             {
-                case moveUp:
+                case MoveDirection.MOVE_UP:
                     currY--;
                     break;
 
-                case moveDown:
+                case MoveDirection.MOVE_DOWN:
                     currY++;
                     break;
 
-                case moveRight:
+                case MoveDirection.MOVE_RIGHT:
                     currX++;
                     break;
 
-                case moveLeft:
+                case MoveDirection.MOVE_LEFT:
                     currX--;
                     break;
                 default:

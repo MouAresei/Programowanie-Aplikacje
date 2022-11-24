@@ -8,12 +8,16 @@ namespace Gra
 {
     class Board
     {
+        private int topCorner = 45;
+        private int leftCorner = 5;
         private int height = 20;
         private int width = 30;
 
         private ConsoleColor backGrounColor = ConsoleColor.DarkRed;
         private ConsoleColor foregroundColor = ConsoleColor.DarkYellow;
         private char borderChar = 'X';
+
+        private List<AvaibleFields> availbleFieldsOnBoard = new List<AvaibleFields>();
 
         public Board()
         {
@@ -27,21 +31,24 @@ namespace Gra
             Console.ForegroundColor = foregroundColor;
             Console.BackgroundColor = backGrounColor;
 
+            Console.SetCursorPosition(topCorner, leftCorner );
             for (int i = 0; i < width; i++)
             {
                 Console.Write(borderChar);
             }
+
+
             for (int i = 0; i < height-1; i++)
             {
-                Console.SetCursorPosition(0, i);
+                Console.SetCursorPosition(topCorner, i+ leftCorner);
                 Console.Write(borderChar);
 
-                Console.SetCursorPosition(width -1, i);
+                Console.SetCursorPosition(width -1 + topCorner, i + leftCorner);
                 Console.Write(borderChar);
 
             }
 
-            Console.SetCursorPosition(0, height-1);
+            Console.SetCursorPosition(topCorner, height-1+ leftCorner);
             for (int i = 0; i < width; i++)
             {
                 Console.Write(borderChar);
@@ -51,16 +58,42 @@ namespace Gra
 
         public bool CollisionDetect(int x, int y)
         {
-            if (y == 0) //górna sciana
+            if (y == leftCorner) //górna sciana
                 return true;
-            if (x == 0) //lewa sciana
+            if (x == topCorner) //lewa sciana
                 return true;
-            if (y == height - 1) //dolna sciana
+            if (y == height - 1 + leftCorner) //dolna sciana
                 return true;
-            if (x == width - 1) //prawa sciana
+            if (x == width - 1 + topCorner) //prawa sciana
                 return true;
             
             return false;
+        }
+
+        private void CompleteAvaibleFields()
+        {
+            for (int x = topCorner; x <= width + topCorner - 2; x++)
+            {
+                for (int y = leftCorner; y <= height + leftCorner -2; y++)
+                {
+                    AvaibleFields avaibleFields = new AvaibleFields();
+                    avaibleFields.X = x;
+                    avaibleFields.Y = y;
+
+                    availbleFieldsOnBoard.Add(avaibleFields);
+                }
+            }
+        }
+
+        public AvaibleFields GetRandomAvaibleField()
+        {
+            Random random = new Random();
+
+            int randomNumber = random.Next(0, availbleFieldsOnBoard.Count);
+
+            AvaibleFields avaibleFields = availbleFieldsOnBoard[randomNumber];
+
+            return avaibleFields;
         }
     }
 }
