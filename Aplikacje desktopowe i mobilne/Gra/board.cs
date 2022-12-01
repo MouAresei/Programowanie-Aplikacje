@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gra.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace Gra
         private int leftCorner = 5;
         private int height = 20;
         private int width = 30;
+        private int percentOfStoneObstacles = 6;
 
         private ConsoleColor backGrounColor = ConsoleColor.DarkRed;
         private ConsoleColor foregroundColor = ConsoleColor.DarkYellow;
@@ -93,6 +95,7 @@ namespace Gra
                     AvaibleFields avaibleFields = new AvaibleFields();
                     avaibleFields.X = x;
                     avaibleFields.Y = y;
+                    avaibleFields.TypeOfObstacles = TypeOfObstacles.None;
 
                     availbleFieldsOnBoard.Add(avaibleFields);
                 }
@@ -107,7 +110,19 @@ namespace Gra
 
             AvaibleFields avaibleFields =  availbleFieldsOnBoard[randomNumber];
 
-            return avaibleFields;
+            private void GenerateRandomStoneObstacles()
+            {
+                int countOfStoneObstacles = (height * width) / percentOfStoneObstacles;
+
+                Random random = new Random();
+                for (int i = 0; i < countOfStoneStoneObstacles; i++)
+                {
+                    int randomField = random.Next(availbleFieldsOnBoard.Cout);
+                        if (availbleFieldsOnBoard[i].TypeOfObstacles == TypeOfObstacles.None)
+                            availbleFieldsOnBoard[i].TypeOfObstacles = TypeOfObstacles.Stone;
+                }
+            }
+
         }
     }
 }
