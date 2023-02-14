@@ -13,10 +13,15 @@ namespace Gra
         private int leftCorner = 5;
         private int height = 20;
         private int width = 30;
-        private int percentOfStoneObstacles = 6;
+        private double percentOfStoneObstacles = 0.06;
+        private char StoneChar = 'S';
 
-        private ConsoleColor backGrounColor = ConsoleColor.DarkRed;
-        private ConsoleColor foregroundColor = ConsoleColor.DarkYellow;
+        private ConsoleColor borderBackGrounColor = ConsoleColor.DarkRed;
+        private ConsoleColor borderForegroundColor = ConsoleColor.DarkYellow;
+
+        private ConsoleColor stoneBackGroundColor = ConsoleColor.DarkGreen;
+        private ConsoleColor stoneForegroundColor = ConsoleColor.Gray;
+
         private char borderChar = 'X';
 
         private List<AvaibleFields> availbleFieldsOnBoard = new List<AvaibleFields>();
@@ -30,15 +35,14 @@ namespace Gra
         {
             Console.Clear();
 
-            Console.ForegroundColor = foregroundColor;
-            Console.BackgroundColor = backGrounColor;
+            Console.ForegroundColor = borderForegroundColor;
+            Console.BackgroundColor = borderBackGrounColor;
 
             Console.SetCursorPosition(topCorner, leftCorner );
             for (int i = 0; i < width; i++)
             {
                 Console.Write(borderChar);
             }
-
 
             for (int i = 0; i < height-1; i++)
             {
@@ -55,10 +59,19 @@ namespace Gra
             {
                 Console.Write(borderChar);
             }
+            Console.ForegroundColor = stoneForegroundColor;
+            Console.BackgroundColor = stoneBackGroundColor;
+
+            List<AvaibleFields> listOfStone = availbleFieldsOnBoard.Where(af => af.TypeOfObstacles == TypeOfObstacles.Stone).ToList();
+            foreach(AvaibleFields item in listOfStone)
+            {
+                Console.SetCursorPosition(item.X, item.Y);
+                Console.Write(StoneChar);
+            }
             Console.ResetColor();
         }
 
-        public CollisionType CollisionDetect(int x, int y)
+        public ColisionType CollisionDetect(int x, int y)
         {
            /* for (int i = 0; i < availbleFieldsOnBoard.Count; i++)
             {
@@ -69,10 +82,10 @@ namespace Gra
             foreach(AvaibleFields field in availbleFieldsOnBoard)
             {
                 if (field.X == x && field.Y == y)
-                    return ColisionDetect.NoCollision;
+                    return ColisionType.NoCollision;
             }
 
-            return true;
+            return ColisionType.BorderCollision;
 
             /*if (y == leftCorner) //górna sciana
                 return true;
@@ -86,7 +99,22 @@ namespace Gra
             return false;*/
         }
 
+        private void GenerateRandomStoneObstacles()
+        {
+            int countOfStoneObstacles = (int)(height * width * percentOfStoneObstacles);
+
+            Random random = new Random();
+            for (int i = 0; i < countOfStoneObstacles; i++)
+            {
+                int randomField = random.Next(availbleFieldsOnBoard.Count);
+                if (availbleFieldsOnBoard[i].TypeOfObstacles == TypeOfObstacles.None)
+                    availbleFieldsOnBoard[i].TypeOfObstacles = TypeOfObstacles.Stone;
+            }
+        }
+
+
         private void CompleteAvaibleFields()
+
         {
             for (int x = topCorner; x <= width + topCorner - 2; x++)
             {
@@ -101,28 +129,12 @@ namespace Gra
                 }
             }
         }
+    }
 
-        public AvaibleFields GetRandomAvaibleField()
-        {
-            Random random = new Random();
+    public AvailableField GetRandomAvailableField()
+    {
+        Random random = new Random();
 
-            int randomNumber = random.Next(0, availbleFieldsOnBoard.Count);
-
-            AvaibleFields avaibleFields =  availbleFieldsOnBoard[randomNumber];
-
-            private void GenerateRandomStoneObstacles()
-            {
-                int countOfStoneObstacles = (height * width) / percentOfStoneObstacles;
-
-                Random random = new Random();
-                for (int i = 0; i < countOfStoneStoneObstacles; i++)
-                {
-                    int randomField = random.Next(availbleFieldsOnBoard.Cout);
-                        if (availbleFieldsOnBoard[i].TypeOfObstacles == TypeOfObstacles.None)
-                            availbleFieldsOnBoard[i].TypeOfObstacles = TypeOfObstacles.Stone;
-                }
-            }
-
-        }
+        int randomNumber = random.Next(0, avaibleFieldsOnBoard.Count);
     }
 }

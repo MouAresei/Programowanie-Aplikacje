@@ -12,7 +12,7 @@ namespace TestCollections
         {
             List<int> listOfInts = new List<int>();
 
-            Console.WriteLine("Ilosc elementow w kolekcji int'ow")
+            Console.WriteLine("Ilosc elementow w kolekcji int'ow");
 
             Random random = new Random();
             for (int i = 0; i < 10; i++)
@@ -44,7 +44,7 @@ namespace TestCollections
             }
             Console.WriteLine();
 
-            Console.WriteLine("max int'ach: " + MaxFromInts(listOfInts))
+            Console.WriteLine("max int'ach: " + MaxFromInts(listOfInts));
         }
         private int MaxFromInts(List<int> list)
         {

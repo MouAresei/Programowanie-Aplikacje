@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Gra.Enums
 {
-    class TypeOfObstacles
+    enum TypeOfObstacles
     {
         None,
         Stone
